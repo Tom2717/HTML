@@ -1,0 +1,25 @@
+/* --- 1. Basic Setup (Same for all pages) --- */
+body {
+  font-family: sans-serif;
+  margin: 50px;
+}
+
+/* --- 2. The Black Page Style --- */
+.black-bg {
+  background-color: black;
+  color: white; /* White text so it shows up on black */
+}
+
+.black-bg a {
+  color: #00d2ff; /* Light blue links look cool on black */
+}
+
+/* --- 3. The White Page Style --- */
+.white-bg {
+  background-color: white;
+  color: black; /* Black text so it shows up on white */
+}
+
+.white-bg a {
+  color: #ff007a; /* Pink links look sharp on white */
+}

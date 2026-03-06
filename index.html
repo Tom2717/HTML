@@ -1,24 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Tom Studio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TN // LAB_GRAVITY</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+    <style>
+        body { 
+            background: #050505; 
+            color: #fff; 
+            margin: 0; 
+            font-family: 'Courier New', monospace;
+            overflow: hidden; /* Prevent scrolling so we can play with gravity */
+        }
+
+        /* --- THE TERMINAL NAV --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        /* --- THE PLAYGROUND --- */
+        #canvas {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .draggable-item {
+            width: 200px;
+            position: absolute;
+            cursor: grab;
+            padding: 10px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+            user-select: none;
+        }
+
+        .draggable-item:active { cursor: grabbing; transform: scale(1.1) rotate(0deg) !important; z-index: 999; }
+
+        .draggable-item img {
+            width: 100%;
+            pointer-events: none; /* Helps with dragging */
+        }
+
+        .item-label {
+            color: #000;
+            font-size: 10px;
+            margin-top: 8px;
+            text-align: center;
+            border-top: 1px dashed #ccc;
+            padding-top: 5px;
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff0055;
+            font-size: 12px;
+            letter-spacing: 2px;
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
-<body class="home-page">
+<body>
 
-<table>
-  <tr>
-    <th><p><a href="index.html">HOME</a></p></th>
-    <th><p><a href="photo.html">PHOTOGRAPHY</a></p></th>
-    <th><p><a href="design.html">DESIGN</a></p></th>
-    <th><p><a href="about.html">ABOUT</a></p></th>
-  </tr>
-</table>
+    <nav>
+        <div style="color: #ff0055;">TN // GRAVITY_LAB_V1</div>
+        <div style="font-size: 10px;">[ CLICK AND THROW OBJECTS ]</div>
+    </nav>
 
-<h1>Tom Nguyen</h1>
-<p>BAKI THE DESIGNER.</p>
+    <div id="canvas">
+        <div class="draggable-item" style="top: 20%; left: 10%; transform: rotate(-5deg);">
+            <img src="design page/natra.png">
+            <div class="item-label">FILE: NATRA_01.EXE</div>
+        </div>
 
-<img src="guy2.png" alt="Portrait" style="width:450px;height:550px;">
+        <div class="draggable-item" style="top: 40%; left: 30%; transform: rotate(10deg);">
+            <img src="photo page/tuyet.jpeg">
+            <div class="item-label">FILE: TUYET_RAW.JPG</div>
+        </div>
+
+        <div class="draggable-item" style="top: 15%; left: 60%; transform: rotate(-8deg);">
+            <img src="design page/naruto.png">
+            <div class="item-label">FILE: UZUMAKI.CSS</div>
+        </div>
+
+        <div class="draggable-item" style="top: 60%; left: 15%; transform: rotate(4deg);">
+            <img src="photo page/lego.jpeg">
+            <div class="item-label">FILE: BRICK_DATA.OBJ</div>
+        </div>
+
+        <div class="draggable-item" style="top: 50%; left: 70%; transform: rotate(-12deg);">
+            <img src="photo page/nhieuxe.jpeg">
+            <div class="item-label">FILE: TRAFFIC_SIM.LOG</div>
+        </div>
+
+        <div class="instructions">System Idle // Drag to interact</div>
+    </div>
+
+    <script>
+        $(function() {
+            $(".draggable-item").draggable({
+                stack: ".draggable-item", // Makes clicked item come to front
+                containment: "window"      // Keeps them on screen
+            });
+        });
+    </script>
 
 </body>
+</html>
 </html>
